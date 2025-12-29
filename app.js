@@ -1,10 +1,15 @@
 function submitTransaction() {
-  const amount = document.getElementById("amount").value;
+  const amount = parseFloat(document.getElementById("amount").value);
 
-  if (amount > 3000) {
-    alert("تجاوزت الحد المسموح");
+  if (isNaN(amount) || amount <= 0) {
+    alert("ادخل مبلغ صحيح");
     return;
   }
 
-  alert("تم إرسال الطلب وجاري مراجعته");
+  if (amount > 3000) {
+    alert("تجاوزت الحد الأقصى للمديونية (3000 جنيه)");
+    return;
+  }
+
+  alert("تم إرسال الطلب وجاري مراجعته من إدارة Brand Store");
 }
