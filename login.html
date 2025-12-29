@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>تسجيل الدخول</h2>
+        <input type="email" id="email" placeholder="البريد الإلكتروني">
+        <input type="password" id="password" placeholder="كلمة المرور أو كود الإدمن">
+        <button class="btn-main" onclick="checkLogin()">دخول</button>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const pass = document.getElementById('password').value;
+            if(pass === "22220") {
+                window.location.href = "admin.html"; // لو الكود صح يفتح لوحة التحكم
+            } else {
+                alert("جاري تسجيل دخول المستخدم...");
+                // هنا هنربط مستقبلاً بـ Firebase
+            }
+        }
+    </script>
+</body>
+</html>
