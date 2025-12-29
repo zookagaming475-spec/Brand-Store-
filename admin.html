@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - المدير</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #161b22; }
+        th, td { border: 1px solid #30363d; padding: 12px; text-align: center; }
+        th { background: #58a6ff; color: black; }
+        .btn-accept { background: #238636; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+        .btn-reject { background: #da3633; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h2>لوحة التحكم - إدارة المستخدمين</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>الاسم الرباعي</th>
+                    <th>الجهة</th>
+                    <th>صورة البطاقة</th>
+                    <th>القرار</th>
+                </tr>
+            </thead>
+            <tbody id="userList">
+                <tr>
+                    <td>مثال: أحمد محمد علي</td>
+                    <td>عميل</td>
+                    <td><a href="#" style="color: #58a6ff;">عرض الصور</a></td>
+                    <td>
+                        <button class="btn-accept">قبول</button>
+                        <button class="btn-reject" onclick="prompt('سبب الرفض:')">رفض</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
