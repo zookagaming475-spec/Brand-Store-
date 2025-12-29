@@ -1,66 +1,48 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>Brand Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="style.css">
-  <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Store - تسجيل جديد</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="container">
+        <form id="registrationForm">
+            <h2>إنشاء حساب جديد</h2>
+            
+            <input type="text" placeholder="اسمك رباعي" required>
+            <input type="text" placeholder="اسم الشهرة (مثلاً: زيكو)" required>
+            <input type="tel" placeholder="رقم تليفونك" required>
+            <input type="email" placeholder="بريدك الإلكتروني (الجيميل)" required>
+            <input type="password" placeholder="كلمة المرور" id="pass" required>
+            <input type="password" placeholder="تأكيد كلمة المرور" id="confirm_pass" required>
+            
+            <label>تابع لـ أي جهة؟</label>
+            <select required>
+                <option value="client">عميل</option>
+                <option value="talabat">شركة طلبات</option>
+            </select>
 
-  <header>
-    <h1>Brand Store</h1>
-    <p>المنصة الرسمية لإدارة المعاملات والشحن</p>
-  </header>
+            <div class="upload-section">
+                <label>صورتك الشخصية</label>
+                <input type="file" accept="image/*" required>
+                
+                <label>وش البطاقة</label>
+                <input type="file" accept="image/*" required>
+                
+                <label>ضهر البطاقة</label>
+                <input type="file" accept="image/*" required>
+            </div>
 
-  <div class="container">
+            <div class="policy-check">
+                <input type="checkbox" id="policy" required>
+                <label for="policy">أوافق على <a href="policies.html">الشروط والسياسات</a></label>
+            </div>
 
-    <!-- تسجيل الدخول -->
-    <div class="card">
-      <h2>تسجيل الدخول</h2>
-      <input type="email" placeholder="البريد الإلكتروني">
-      <input type="password" placeholder="كلمة المرور">
-      <button>دخول</button>
+            <button type="submit" class="btn-main">إنشاء الحساب</button>
+            <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل دخول</a></p>
+        </form>
     </div>
-
-    <!-- طلب معاملة -->
-    <div class="card">
-      <h2>طلب معاملة جديدة</h2>
-
-      <select id="transactionType">
-        <option>إيداع طلبات</option>
-        <option>شحن رصيد</option>
-        <option>خدمة أخرى</option>
-      </select>
-
-      <input type="number" id="amount" placeholder="المبلغ بالجنيه">
-
-      <button onclick="submitTransaction()">تأكيد الطلب</button>
-
-      <div class="note">
-        ⚠️ الحد الأقصى للمديونية 3000 جنيه  
-        <br>
-        ⛔ سيتم الحظر تلقائيًا عند تجاوز الحد
-      </div>
-    </div>
-
-    <!-- حالة الحساب -->
-    <div class="card">
-      <h2>حالة الحساب</h2>
-      <p>المديونية الحالية: <b>1500 جنيه</b></p>
-      <p>الحالة: <b style="color:#0f0">نشط</b></p>
-    </div>
-
-  </div>
-
-  <footer>
-    © 2025 Brand Store  
-    <br>
-    الدعم: 012 74790388
-  </footer>
-
 </body>
 </html>
