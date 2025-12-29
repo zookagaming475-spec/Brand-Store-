@@ -5,44 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Store - تسجيل جديد</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 </head>
 <body>
     <div class="container">
         <form id="registrationForm">
             <h2>إنشاء حساب جديد</h2>
+            <input type="text" id="fullName" placeholder="اسمك رباعي" required>
+            <input type="text" id="nickname" placeholder="اسم الشهرة (زيكو)" required>
+            <input type="tel" id="phone" placeholder="رقم تليفونك" required>
+            <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
+            <input type="password" id="pass" placeholder="كلمة المرور" required>
             
-            <input type="text" placeholder="اسمك رباعي" required>
-            <input type="text" placeholder="اسم الشهرة (مثلاً: زيكو)" required>
-            <input type="tel" placeholder="رقم تليفونك" required>
-            <input type="email" placeholder="بريدك الإلكتروني (الجيميل)" required>
-            <input type="password" placeholder="كلمة المرور" id="pass" required>
-            <input type="password" placeholder="تأكيد كلمة المرور" id="confirm_pass" required>
-            
-            <label>تابع لـ أي جهة؟</label>
-            <select required>
-                <option value="client">عميل</option>
-                <option value="talabat">شركة طلبات</option>
+            <label style="color: #8b949e; display: block; margin-top: 10px;">تابع لـ أي جهة؟</label>
+            <select id="userType" required>
+                <option value="عميل">عميل</option>
+                <option value="شركة طلبات">شركة طلبات</option>
             </select>
 
             <div class="upload-section">
                 <label>صورتك الشخصية</label>
-                <input type="file" accept="image/*" required>
-                
+                <input type="file" id="userImg" accept="image/*" required>
                 <label>وش البطاقة</label>
-                <input type="file" accept="image/*" required>
-                
-                <label>ضهر البطاقة</label>
-                <input type="file" accept="image/*" required>
+                <input type="file" id="idFront" accept="image/*" required>
             </div>
 
-            <div class="policy-check">
-                <input type="checkbox" id="policy" required>
-                <label for="policy">أوافق على <a href="policies.html">الشروط والسياسات</a></label>
-            </div>
-
-            <button type="submit" class="btn-main">إنشاء الحساب</button>
-            <p>لديك حساب بالفعل؟ <a href="login.html">تسجيل دخول</a></p>
+            <button type="submit" class="btn-main" id="submitBtn">إرسال الطلب للمراجعة</button>
         </form>
     </div>
+
+    <script>
+        // إعدادات Firebase الخاصة بك
+        const firebaseConfig = {
+          apiKey: "AIzaSyAtjjiK7VhVc64fiq2VK9gYN3dqknnKzpI",
+          authDomain: "brand-store-81a2b.firebaseapp.com",
+          projectId: "brand-store-81a2b",
+          storageBucket: "brand-store-81a2b.firebasestorage.app",
+          messagingSenderId: "728240053732",
+          appId: "1:728240053732:web:08f73ae21296aa430bfbf1"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        document.getElementById('registrationForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "جاري الإرسال...";
+            btn.disabled = true;
+
+            try {
+                // رفع صورة واحدة كمثال (صورتك الشخصية)
+                const file = document.getElementById('userImg').files[0];
+                const storageRef = storage.ref('users/' + file.name);
+                await storageRef.put(file);
+                const imgUrl = await storageRef.getDownloadURL();
+
+                // حفظ البيانات في Firestore
+                await db.collection("users").add({
+                    fullName: document.getElementById('fullName').value,
+                    nickname: document.getElementById('nickname').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    userType: document.getElementById('userType').value,
+                    photo: imgUrl,
+                    status: "pending", // حالة الطلب: تحت المراجعة
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                alert("تم إرسال طلبك بنجاح! انتظر مراجعة صاحب العمل.");
+                window.location.reload();
+            } catch (error) {
+                alert("خطأ: " + error.message);
+                btn.innerText = "إرسال الطلب";
+                btn.disabled = false;
+            }
+        };
+    </script>
 </body>
 </html>
