@@ -2,93 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>Brand Store | ZOOKA EXPRESS</title>
+  <title>Brand Store</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: #fff;
-    }
-
-    header {
-      background: linear-gradient(90deg, #005eff, #000);
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
-
-    .container {
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
-    }
-
-    .card {
-      background: #111;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(0,94,255,0.3);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #00aaff;
-      font-size: 20px;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: none;
-      font-size: 15px;
-    }
-
-    input, select {
-      background: #222;
-      color: #fff;
-    }
-
-    button {
-      background: #005eff;
-      color: #fff;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background: #0040c0;
-    }
-
-    .note {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 10px;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      padding: 15px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js"></script>
 </head>
 
 <body>
 
   <header>
     <h1>Brand Store</h1>
-    <p>تابع لـ ZOOKA EXPRESS</p>
+    <p>المنصة الرسمية لإدارة المعاملات والشحن</p>
   </header>
 
   <div class="container">
@@ -101,24 +26,24 @@
       <button>دخول</button>
     </div>
 
-    <!-- طلب شحن -->
+    <!-- طلب معاملة -->
     <div class="card">
       <h2>طلب معاملة جديدة</h2>
 
-      <select>
+      <select id="transactionType">
         <option>إيداع طلبات</option>
         <option>شحن رصيد</option>
         <option>خدمة أخرى</option>
       </select>
 
-      <input type="number" placeholder="المبلغ بالجنيه">
+      <input type="number" id="amount" placeholder="المبلغ بالجنيه">
 
-      <button>تأكيد الطلب</button>
+      <button onclick="submitTransaction()">تأكيد الطلب</button>
 
       <div class="note">
         ⚠️ الحد الأقصى للمديونية 3000 جنيه  
         <br>
-        ⛔ يتم الحظر تلقائيًا عند تجاوز الحد
+        ⛔ سيتم الحظر تلقائيًا عند تجاوز الحد
       </div>
     </div>
 
@@ -132,7 +57,7 @@
   </div>
 
   <footer>
-    © 2025 Brand Store - ZOOKA EXPRESS  
+    © 2025 Brand Store  
     <br>
     الدعم: 012 74790388
   </footer>
