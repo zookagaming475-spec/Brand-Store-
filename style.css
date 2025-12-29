@@ -1,7 +1,8 @@
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
   background: #0b0b0b;
   color: #fff;
-  font-family: Arial, sans-serif;
 }
 
 header {
@@ -10,10 +11,65 @@ header {
   text-align: center;
 }
 
+header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.card {
+  background: #111;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0,94,255,0.3);
+}
+
+h2 {
+  margin-top: 0;
+  color: #00aaff;
+  font-size: 20px;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+}
+
+input, select {
+  background: #222;
+  color: #fff;
+}
+
 button {
   background: #005eff;
   color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  background: #0040c0;
+}
+
+.note {
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 10px;
+}
+
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  padding: 15px;
 }
